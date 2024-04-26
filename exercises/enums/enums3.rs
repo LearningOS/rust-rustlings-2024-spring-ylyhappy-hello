@@ -51,8 +51,7 @@ impl State {
             Message::Move(p) => { self.position = p},
             Message::Echo(s) => {self.message = s},
             Message::ChangeColor(u1,u2,u3) =>{self.color = (u1,u2,u3)},
-            Quit => {self.quit = true},
-            _ => {},
+            Message::Quit => {self.quit = true},
         }
     }
 }
