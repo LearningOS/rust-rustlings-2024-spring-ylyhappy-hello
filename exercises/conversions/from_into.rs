@@ -40,10 +40,26 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        let vs: Vec<&str> = s.split(',').collect();
+        println!("token count {}", vs.len());
+        if vs.len() != 2 {
+            return Person::default();
+        }
+        let age= vs[1].parse::<usize>();
+        let name = vs[0];
+        if name.is_empty() {
+           return  Person::default()
+        }else if age.is_err() {
+           return Person::default()
+        }else {
+            return Person {
+                name: name.to_string(),
+                age:age.unwrap(),
+            }
+        }
+
     }
 }
 
@@ -51,7 +67,7 @@ fn main() {
     // Use the `from` function
     let p1 = Person::from("Mark,20");
     // Since From is implemented for Person, we should be able to use Into
-    let p2: Person = "Gerald,70".into();
+    let p2:Person = "Mark,20".into();
     println!("{:?}", p1);
     println!("{:?}", p2);
 }
