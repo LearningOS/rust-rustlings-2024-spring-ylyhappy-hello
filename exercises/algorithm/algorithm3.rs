@@ -3,10 +3,17 @@
 	This problem requires you to implement a sorting algorithm
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
-// I AM NOT DONE
+use std::mem::swap;
 
-fn sort<T>(array: &mut [T]){
-	//TODO
+fn sort<T: Ord>(array: &mut [T]){
+    array.sort();
+   // for i in 0..array.len() {
+   //     for j in 0..array.len() {
+   //         if array[i] > array[i] {
+   //             swap(array[i], array[j]);
+   //         }
+   //     }
+   // }
 }
 #[cfg(test)]
 mod tests {
