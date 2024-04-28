@@ -11,12 +11,12 @@ struct Point {
 fn main() {
     let y: Option<Point> = Some(Point { x: 100, y: 200 });
 
-    match y {
+    let y = match y {
         Some(p) => {
             println!("Co-ordinates are {},{} ", p.x, p.y);
-            p;
+            p
         },
         _ => panic!("no match!"),
-    }
+    };
     y; // Fix without deleting this line.
 }
