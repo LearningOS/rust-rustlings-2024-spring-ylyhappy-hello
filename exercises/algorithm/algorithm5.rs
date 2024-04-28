@@ -3,7 +3,6 @@
 	This problem requires you to implement a basic BFS algorithm
 */
 
-//I AM NOT DONE
 use std::collections::VecDeque;
 
 // Define a graph
@@ -29,7 +28,7 @@ impl Graph {
     fn bfs_with_return(&self, start: usize) -> Vec<usize> {
 
         // st
-        let st = vec![10; false];
+        let mut st = vec![false; 10];
         let mut visit_order = vec![];
         let mut q = VecDeque::from([start]);
         while q.front().is_some() {
@@ -37,19 +36,18 @@ impl Graph {
                 Some(x) => {
                     visit_order.push(*x);
                     st[*x] = true;
-                    q.pop_front();
-                    match self.adj.get(start) {
+                    match self.adj.get(*x) {
                         Some(v) => {
-                            println!("获取的数组是{:?}", v);
                             v.iter().for_each(|e|{
                                 if !st[*e] {
+                                   st[*e] = true;
                                    q.push_back(*e);
                                 }
                             });
-                            println!("获取的队列是{:?}", q);
                         },
                         _ => {}
                     }
+                    q.pop_front();
                 },
                 None => {
                     println!("获取的队列是{:?}", q);
